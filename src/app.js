@@ -1,6 +1,10 @@
 //*        Ini imports
 import express from "express";
 import { engine } from "express-handlebars"
+import "./database.js"
+import cartsRouter from './routes/carts.routes.js'
+import productsRouter from "./routes/products.routes.js"
+import viewsRouter from "./routes/views.routes.js"
 const PUERTO = 8080;
 const app = express();
 //*        Middls y handle
@@ -14,10 +18,9 @@ app.set("views", "./src/view")
 
 
 //*         rutas
-app.get("/", (req, res)=>{
-    res.render('index')
-})
-
+app.use("/api/products", productsRouter);
+app.use("/api/carts", cartsRouter);
+app.use("/", viewsRouter);
 
 
 
